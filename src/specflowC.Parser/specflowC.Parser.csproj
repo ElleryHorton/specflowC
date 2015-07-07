@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2DB8C3ED-788B-4AB4-8E85-CD30DDAF39CB}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>specflowC.Parser</RootNamespace>
+    <AssemblyName>specflowC.Parser</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Build\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Build\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Build" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TechTalk.SpecFlow, Version=1.9.0.77, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Input\FeatureGroup.cs" />
+    <Compile Include="Input\StepDefinitionParser.cs" />
+    <Compile Include="Output\CodeBehindGenerator.cs" />
+    <Compile Include="Enums\EnumNames.cs" />
+    <Compile Include="Enums\EnumTypes.cs" />
+    <Compile Include="Input\InputGenerator.cs" />
+    <Compile Include="Nodes\NodeExamples.cs" />
+    <Compile Include="Nodes\NodeFeature.cs" />
+    <Compile Include="Nodes\NodeHook.cs" />
+    <Compile Include="Nodes\NodeScenario.cs" />
+    <Compile Include="Nodes\NodeScenarioOutline.cs" />
+    <Compile Include="Nodes\NodeStep.cs" />
+    <Compile Include="Input\GherkinParser.cs" />
+    <Compile Include="Nodes\Parameter.cs" />
+    <Compile Include="Nodes\TokenGherkinStep.cs" />
+    <Compile Include="Output\Helpers\GeneratorHelper.cs" />
+    <Compile Include="Output\HeaderGenerator.cs" />
+    <Compile Include="Output\Helpers\MSCppUnitTestLanguageConfig.cs" />
+    <Compile Include="Output\Helpers\UnitTestLanguageConfig.cs" />
+    <Compile Include="Output\IGenerate.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Output\StepDefinitionGenerator.cs" />
+    <Compile Include="TechTalk.SpecFlow\BindingSkeletons\DefaultSkeletonTemplateProvider.cs" />
+    <Compile Include="TechTalk.SpecFlow\BindingSkeletons\FileBasedSkeletonTemplateProvider.cs" />
+    <Compile Include="TechTalk.SpecFlow\BindingSkeletons\ISkeletonTemplateProvider.cs" />
+    <Compile Include="TechTalk.SpecFlow\BindingSkeletons\IStepDefinitionSkeletonProvider.cs" />
+    <Compile Include="TechTalk.SpecFlow\Bindings\StepContext.cs" />
+    <Compile Include="TechTalk.SpecFlow\Bindings\StepDefinitionKeyword.cs" />
+    <Compile Include="TechTalk.SpecFlow\Bindings\StepDefinitionType.cs" />
+    <Compile Include="TechTalk.SpecFlow\PlatformCompatibility\CultureInfoHelper.cs" />
+    <Compile Include="TechTalk.SpecFlow\PlatformCompatibility\EnumHelper.cs" />
+    <Compile Include="TechTalk.SpecFlow\ProgrammingLanguage.cs" />
+    <Compile Include="TechTalk.SpecFlow\ErrorHandling\SpecFlowException.cs" />
+    <Compile Include="TechTalk.SpecFlow\BindingSkeletons\StepDefinitionSkeletonProvider.cs" />
+    <Compile Include="TechTalk.SpecFlow\BindingSkeletons\StepDefinitionSkeletonStyle.cs" />
+    <Compile Include="TechTalk.SpecFlow\Bindings\StepInstance.cs" />
+    <Compile Include="TechTalk.SpecFlow\BindingSkeletons\StepTextAnalyzer.cs" />
+    <Compile Include="TechTalk.SpecFlow\Tracing\LanguageHelper.cs" />
+    <Compile Include="Template\SpecFlowCSkeletonTemplateProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="TechTalk.SpecFlow\BindingSkeletons\DefaultSkeletonTemplates.sftemplate" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TechTalk.SpecFlow\Languages.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

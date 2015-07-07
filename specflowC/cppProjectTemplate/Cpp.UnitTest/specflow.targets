@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+ 
+  <ItemGroup>
+  <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml" />
+  <AvailableItemName Include="CppFeatureFile">
+   <Targets>GenerateCode</Targets>
+  </AvailableItemName>
+ </ItemGroup>
+ 
+ <Target
+  Name="GenerateCode"
+  BeforeTargets="ClCompile"
+  Inputs="%(CppFeatureFile.Identity)"
+  Outputs="%(CppFeatureFile.Identity).h">
+  <Message Importance="high" Text="Generating SpecFlow C++ files: %(CppFeatureFile.Filename).h, %(CppFeatureFile.Filename)_scenarios.cpp, %(CppFeatureFile.Filename)_stepDefinitions.cpp" />
+  <Exec Command="C:\specflowC\specflowC.Parser.exe %(CppFeatureFile.Identity)"/>
+ </Target>
+ </Project>

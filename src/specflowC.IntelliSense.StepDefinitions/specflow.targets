@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target
+  Name="GenerateC++Code"
+  BeforeTargets="Build"
+  Inputs="%(None.Identity)"
+  Outputs="%(None.Identity).h">
+  <Message Importance="high" Condition="'%(None.Extension)' == '.feature'" Text="Generating SpecFlow C++ files: %(None.Filename).h, %(None.Filename)_scenarios.cpp, %(None.Filename)_stepDefinitions.cpp" />
+  <Exec Condition="'%(None.Extension)' == '.feature'" Command="C:\specflowC\specflowC.Parser.exe %(None.Identity)"/>
+ </Target>
+ </Project>

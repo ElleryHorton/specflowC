@@ -1,0 +1,14 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Item">
+  <TemplateData>
+    <DefaultName>C++ Feature File.feature</DefaultName>
+    <Name>C++ Feature File</Name>
+    <Description>C++ Feature File</Description>
+    <ProjectType>VC</ProjectType>
+    <SortOrder>10</SortOrder>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <References />
+    <ProjectItem SubType="" TargetFileName="$fileinputname$.feature" ReplaceParameters="false">MyFeature.feature</ProjectItem>
+  </TemplateContent>
+</VSTemplate>

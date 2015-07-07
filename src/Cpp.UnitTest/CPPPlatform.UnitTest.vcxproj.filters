@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{3c8d2c41-95cd-46b6-a5d4-60f04810c5d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features">
+      <UniqueIdentifier>{b39e748a-c60e-43ef-b1a4-710c5c95da45}</UniqueIdentifier>
+      <Extensions>Features</Extensions>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{20ca9975-7c9d-412b-8ea3-8aa2c7776221}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CppUnitTestHooks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="trim.hpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CppFeatureFile Include="Features\feature1.feature">
+      <Filter>Features</Filter>
+    </CppFeatureFile>
+    <CppFeatureFile Include="Features\feature2.feature">
+      <Filter>Features</Filter>
+    </CppFeatureFile>
+  </ItemGroup>
+</Project>

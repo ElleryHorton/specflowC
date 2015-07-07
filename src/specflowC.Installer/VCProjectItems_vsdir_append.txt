@@ -1,0 +1,1 @@
+﻿MyFeature.feature|0|C++ Feature File (.feature)|99|C++ Feature File (.feature)|0|0|0|MyFeature
