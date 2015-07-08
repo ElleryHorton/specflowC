@@ -1,0 +1,20 @@
+Pull requests will be handled in the following order and time periods:
+
+Change Requested		Has Unit Tests		Est Time Period
+================		==============		===============
+Bug fix				YES			hours to a few days
+Bug fix				NO			a few days to a week
+feature from backlog		YES			a few days to a week
+feature from backlog		NO			days to weeks
+enhancement not on backlog	YES			a few days to a week
+enhancement not on backlog	NO			weeks
+feature not on backlog		YES			weeks
+feature not on backlog		NO			months to never
+
+The queue is fastest / simplest pull request with accompanying unit tests will always receive attention first and preempt slower / complicated pull requests.
+
+An enhancement is either a small tweak or minor change (typically doesn't spawn new files).  Features are more grandiose in design.
+
+Refer to the Next Release and Backlog section of www.specflowc.com/release-notes/ for information on the backlog.
+
+Refer to www.specflowc.com/contribute for more details.
