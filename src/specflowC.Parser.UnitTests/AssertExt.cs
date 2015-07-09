@@ -4,21 +4,13 @@ namespace specflowC.Parser.UnitTests
 {
     public static class AssertExt
     {
-        public static void ContentsOfStringArray(string[] stringExpected, string[] stringActual)
+        public static void ContentsOfStringArray(string[] stringArrayExpected, string[] stringArrayActual)
         {
-            Assert.AreEqual(stringExpected.Length, stringActual.Length, "String arrays are not the same length");
+            Assert.AreEqual(stringArrayExpected.Length, stringArrayActual.Length, "String arrays are not the same length");
 
-            int stringLength = stringExpected.Length;
-
-            string expected;
-            string actual;
-
-            for (int i = 0; i < stringLength; i++)
+            for (int i = 0; i < stringArrayExpected.Length; i++)
             {
-                expected = stringExpected[i].ToString();
-                actual = stringActual[i].ToString();
-
-                Assert.AreEqual(expected, actual, "Line number: " + i);
+                Assert.AreEqual(stringArrayExpected[i], stringArrayActual[i], "Line number: " + i);
             }
         }
     }
