@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace specflowC.Parser.Nodes
 {
@@ -13,13 +14,13 @@ namespace specflowC.Parser.Nodes
 
         public int GetIndexOfParameter(string parameterName)
         {
+            if (Rows == null)
+            {
+                return -1;
+            }
             if (Rows.Count > 1)
             {
-                for (int i = 0; i < Rows[0].Length; i++)
-                {
-                    if (Rows[0][i] == parameterName)
-                        return i;
-                }
+                return Array.FindIndex(Rows[0], column => column == parameterName);
             }
             return -1;
         }
