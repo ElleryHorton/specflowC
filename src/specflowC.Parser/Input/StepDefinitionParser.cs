@@ -129,6 +129,7 @@ namespace specflowC.Parser
         {
             char[] multipleParameterDelimiter = { ' ' };
             string[] arrayOfParameters = parameters.Split(multipleParameterDelimiter);
+            bool foundTable = false;
 
             for (int i = 0; i < arrayOfParameters.Length; i += 2)
             {
@@ -147,7 +148,21 @@ namespace specflowC.Parser
                     string[] lastParameter = arrayOfParameters[i + 1].Split(parenthesisTrim);
                     p.Name = lastParameter[0].TrimEnd();
                 }
-                step.Parameters.Add(p);
+
+                // don't add table parameters as step parameters
+                if (p.Name == "table" || (p.Name == "rows" && p.Type == "int") || (p.Name == "cols" && p.Type == "int"))
+                {
+                    foundTable = true;
+                }
+                else
+                {
+                    step.Parameters.Add(p);
+                }
+            }
+
+            if (foundTable)
+            {
+                step.Rows.Add(new string[] { string.Empty });
             }
         }
     }

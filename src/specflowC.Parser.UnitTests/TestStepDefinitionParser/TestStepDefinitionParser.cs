@@ -170,12 +170,8 @@ namespace specflowC.Parser.UnitTests
 
             Assert.AreEqual("Feature1", featureGroup[0].FeatureName);
             Assert.AreEqual("GivenASentence", featureGroup[0].Steps[0].Name);
-            Assert.AreEqual("std::vector<std::vector<std::string>>", featureGroup[0].Steps[0].Parameters[0].Type);
-            Assert.AreEqual("table", featureGroup[0].Steps[0].Parameters[0].Name);
-            Assert.AreEqual("int", featureGroup[0].Steps[0].Parameters[1].Type);
-            Assert.AreEqual("rows", featureGroup[0].Steps[0].Parameters[1].Name);
-            Assert.AreEqual("int", featureGroup[0].Steps[0].Parameters[2].Type);
-            Assert.AreEqual("cols", featureGroup[0].Steps[0].Parameters[2].Name);
+            Assert.AreEqual(0, featureGroup[0].Steps[0].Parameters.Count, "table counted as a parameter");
+            Assert.AreEqual(1, featureGroup[0].Steps[0].Rows.Count, "table doesn't have any rows");
         }
 
         [TestMethod]
@@ -199,14 +195,10 @@ namespace specflowC.Parser.UnitTests
 
             Assert.AreEqual("Feature1", featureGroup[0].FeatureName);
             Assert.AreEqual("GivenASentence", featureGroup[0].Steps[0].Name);
-            Assert.AreEqual("std::vector<std::vector<std::string>>", featureGroup[0].Steps[0].Parameters[0].Type);
-            Assert.AreEqual("table", featureGroup[0].Steps[0].Parameters[0].Name);
-            Assert.AreEqual("int", featureGroup[0].Steps[0].Parameters[1].Type);
-            Assert.AreEqual("rows", featureGroup[0].Steps[0].Parameters[1].Name);
-            Assert.AreEqual("int", featureGroup[0].Steps[0].Parameters[2].Type);
-            Assert.AreEqual("cols", featureGroup[0].Steps[0].Parameters[2].Name);
-            Assert.AreEqual("decimal", featureGroup[0].Steps[0].Parameters[3].Type);
-            Assert.AreEqual("Parameter1", featureGroup[0].Steps[0].Parameters[3].Name);
+            Assert.AreEqual(1, featureGroup[0].Steps[0].Parameters.Count, "table counted as a parameter");
+            Assert.AreEqual(1, featureGroup[0].Steps[0].Rows.Count, "table doesn't have any rows");
+            Assert.AreEqual("decimal", featureGroup[0].Steps[0].Parameters[0].Type);
+            Assert.AreEqual("Parameter1", featureGroup[0].Steps[0].Parameters[0].Name);
         }
 
         [TestMethod]
@@ -235,20 +227,12 @@ namespace specflowC.Parser.UnitTests
 
             Assert.AreEqual("Feature1", featureGroup[0].FeatureName);
             Assert.AreEqual("GivenASentence", featureGroup[0].Steps[0].Name);
-            Assert.AreEqual("std::vector<std::vector<std::string>>", featureGroup[0].Steps[0].Parameters[0].Type);
-            Assert.AreEqual("table", featureGroup[0].Steps[0].Parameters[0].Name);
-            Assert.AreEqual("int", featureGroup[0].Steps[0].Parameters[1].Type);
-            Assert.AreEqual("rows", featureGroup[0].Steps[0].Parameters[1].Name);
-            Assert.AreEqual("int", featureGroup[0].Steps[0].Parameters[2].Type);
-            Assert.AreEqual("cols", featureGroup[0].Steps[0].Parameters[2].Name);
+            Assert.AreEqual(0, featureGroup[0].Steps[0].Parameters.Count, "table counted as a parameter");
+            Assert.AreEqual(1, featureGroup[0].Steps[0].Rows.Count, "table doesn't have any rows");
 
             Assert.AreEqual("WhenASentence", featureGroup[0].Steps[1].Name);
-            Assert.AreEqual("std::vector<std::vector<std::string>>", featureGroup[0].Steps[1].Parameters[0].Type);
-            Assert.AreEqual("table", featureGroup[0].Steps[1].Parameters[0].Name);
-            Assert.AreEqual("int", featureGroup[0].Steps[1].Parameters[1].Type);
-            Assert.AreEqual("rows", featureGroup[0].Steps[1].Parameters[1].Name);
-            Assert.AreEqual("int", featureGroup[0].Steps[1].Parameters[2].Type);
-            Assert.AreEqual("cols", featureGroup[0].Steps[1].Parameters[2].Name);
+            Assert.AreEqual(0, featureGroup[0].Steps[0].Parameters.Count, "table counted as a parameter");
+            Assert.AreEqual(1, featureGroup[0].Steps[0].Rows.Count, "table doesn't have any rows");
         }
 
         [TestMethod]
@@ -343,21 +327,13 @@ namespace specflowC.Parser.UnitTests
 
             Assert.AreEqual("Feature1", featureGroup[0].FeatureName);
             Assert.AreEqual("GivenASentence1", featureGroup[0].Steps[0].Name);
-            Assert.AreEqual("std::vector<std::vector<std::string>>", featureGroup[0].Steps[0].Parameters[0].Type);
-            Assert.AreEqual("table", featureGroup[0].Steps[0].Parameters[0].Name);
-            Assert.AreEqual("int", featureGroup[0].Steps[0].Parameters[1].Type);
-            Assert.AreEqual("rows", featureGroup[0].Steps[0].Parameters[1].Name);
-            Assert.AreEqual("int", featureGroup[0].Steps[0].Parameters[2].Type);
-            Assert.AreEqual("cols", featureGroup[0].Steps[0].Parameters[2].Name);
+            Assert.AreEqual(0, featureGroup[0].Steps[0].Parameters.Count, "table counted as a parameter");
+            Assert.AreEqual(1, featureGroup[0].Steps[0].Rows.Count, "table doesn't have any rows");
 
             Assert.AreEqual("Feature2", featureGroup[1].FeatureName);
             Assert.AreEqual("GivenASentence2", featureGroup[1].Steps[0].Name);
-            Assert.AreEqual("std::vector<std::vector<std::string>>", featureGroup[1].Steps[0].Parameters[0].Type);
-            Assert.AreEqual("table", featureGroup[1].Steps[0].Parameters[0].Name);
-            Assert.AreEqual("int", featureGroup[1].Steps[0].Parameters[1].Type);
-            Assert.AreEqual("rows", featureGroup[1].Steps[0].Parameters[1].Name);
-            Assert.AreEqual("int", featureGroup[1].Steps[0].Parameters[2].Type);
-            Assert.AreEqual("cols", featureGroup[1].Steps[0].Parameters[2].Name);
+            Assert.AreEqual(0, featureGroup[0].Steps[0].Parameters.Count, "table counted as a parameter");
+            Assert.AreEqual(1, featureGroup[0].Steps[0].Rows.Count, "table doesn't have any rows");
         }
 
         [TestMethod]

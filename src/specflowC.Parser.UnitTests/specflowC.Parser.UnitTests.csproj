@@ -16,6 +16,10 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,6 +52,7 @@
   <ItemGroup>
     <Compile Include="AssertExt.cs" />
     <Compile Include="GeneratorFactory.cs" />
+    <Compile Include="NodeStepEquality\TestNodeStepEquality.cs" />
     <Compile Include="TestCodeBehindGenerator\TestCodeBehindData.cs" />
     <Compile Include="TestCodeBehindGenerator\TestCodeBehindGenerator.cs" />
     <Compile Include="TestCodeBehindGenerator\TestCodeBehindGeneratorTables.cs" />
@@ -66,18 +71,16 @@
     <Compile Include="TestStepGenerator\TestStepGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NodeStepEquality\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\specflowC.Parser\specflowC.Parser.csproj">
       <Project>{2db8c3ed-788b-4ab4-8e85-cd30ddaf39cb}</Project>
       <Name>specflowC.Parser</Name>
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
