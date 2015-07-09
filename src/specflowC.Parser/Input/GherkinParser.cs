@@ -92,7 +92,7 @@ namespace specflowC.Parser
             {
                 return null;
             }
-            if (ParameterBracketCountIsNotEvent(gherkinStep))
+            if (ParameterBracketCountIsNotEven(gherkinStep))
             {
                 return null;
             }
@@ -112,7 +112,7 @@ namespace specflowC.Parser
             return (str.Split(EnumNames.tick.ToCharArray()).Length - 1) % 2 != 0;
         }
 
-        private static bool ParameterBracketCountIsNotEvent(string gherkinStep)
+        private static bool ParameterBracketCountIsNotEven(string gherkinStep)
         {
             return gherkinStep.Split(EnumNames.tickOpen.ToCharArray()).Length != gherkinStep.Split(EnumNames.tickClose.ToCharArray()).Length;
         }
