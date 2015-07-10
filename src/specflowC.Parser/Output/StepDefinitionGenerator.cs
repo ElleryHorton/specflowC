@@ -10,45 +10,52 @@ namespace specflowC.Parser
     {
         protected override string[] BuildContents(NodeFeature feature)
         {
-            BuildIncludeStatement(feature.Name);
-            OpenNameSpace(LanguageConfig.NameSpace);
-            BuildStepClass(feature);
+            BuildIncludeStatement();
+            BuildHeaderStatement();
+            OpenNameSpace();
+            BuildStepClass(feature.Name, feature.Scenarios);
             CloseNameSpace();
 
             return Contents.ToArray();
         }
 
-        private void BuildIncludeStatement(string featureName)
+        private void BuildIncludeStatement()
         {
             if (LanguageConfig.UseInclude)
             {
-                foreach (var statement in LanguageConfig.includeStatementsInStepDefinition)
-                {
-                    Contents.Add(statement);
-                }
+                Contents.AddRange(LanguageConfig.includeStatementsInStepDefinition);
                 Contents.Add(string.Empty);
             }
         }
 
-        private void OpenNameSpace(string namespaceName)
+        private void BuildHeaderStatement()
+        {
+            if (LanguageConfig.UseHeader)
+            {
+                Contents.AddRange(LanguageConfig.headerStatementsInStepDefinition);
+                Contents.Add(string.Empty);
+            }
+        }
+
+        private void OpenNameSpace()
         {
             if (LanguageConfig.UseNamespace)
             {
-                Contents.Add(string.Format("namespace {0}", namespaceName));
+                Contents.Add(string.Format("namespace {0}", LanguageConfig.NameSpace));
                 Contents.Add("{");
             }
         }
 
-        private void BuildStepClass(NodeFeature feature)
+        private void BuildStepClass(string featureName, IList<NodeScenario> scenarios)
         {
             List<NodeStep> filterUniqueSteps = new List<NodeStep>();
 
-            foreach (var scenario in feature.Scenarios)
+            foreach (var scenario in scenarios)
             {
                 if (scenario.Steps.Count > 0)
                 {
-                    AddSteps(feature, GeneratorHelper.FindUniqueSteps(filterUniqueSteps, scenario.Steps));
-                    if (feature.Scenarios.Last() != scenario)
+                    AddSteps(featureName, GeneratorHelper.FindUniqueSteps(filterUniqueSteps, scenario.Steps));
+                    if (scenarios.Last() != scenario)
                     {
                         Contents.Add(string.Empty);
                     }
@@ -56,7 +63,7 @@ namespace specflowC.Parser
             }
         }
 
-        private void AddSteps(NodeFeature feature, List<NodeStep> steps)
+        private void AddSteps(string featureName, IList<NodeStep> steps)
         {
             foreach (var step in steps)
             {
@@ -64,7 +71,7 @@ namespace specflowC.Parser
 
                 if ((step.Parameters.Count == 0) && (step.Rows.Count == 0))
                 {
-                    Contents.Add(string.Format("\tvoid {0}::{1}()", feature.Name, step.Name));
+                    Contents.Add(string.Format("\tvoid {0}::{1}()", featureName, step.Name));
                 }
                 else if ((step.Parameters.Count > 0) && (step.Rows.Count == 0))
                 {
@@ -72,11 +79,11 @@ namespace specflowC.Parser
                     {
                         parametersInStep.Add(Parameter.Type + " " + Parameter.Name);
                     }
-                    Contents.Add(string.Format("\tvoid {0}::{1}({2})", feature.Name, step.Name, string.Join(", ", parametersInStep)));
+                    Contents.Add(string.Format("\tvoid {0}::{1}({2})", featureName, step.Name, string.Join(", ", parametersInStep)));
                 }
                 else if ((step.Parameters.Count == 0) && (step.Rows.Count > 0))
                 {
-                    Contents.Add(string.Format("\tvoid {0}::{1}({2})", feature.Name, step.Name, LanguageConfig.TableDeclaration));
+                    Contents.Add(string.Format("\tvoid {0}::{1}({2})", featureName, step.Name, LanguageConfig.TableDeclaration));
                 }
                 else
                 {
@@ -84,7 +91,7 @@ namespace specflowC.Parser
                     {
                         parametersInStep.Add(Parameter.Type + " " + Parameter.Name);
                     }
-                    Contents.Add(string.Format("\tvoid {0}::{1}({2}, {3})", feature.Name, step.Name, LanguageConfig.TableDeclaration, string.Join(", ", parametersInStep)));
+                    Contents.Add(string.Format("\tvoid {0}::{1}({2}, {3})", featureName, step.Name, LanguageConfig.TableDeclaration, string.Join(", ", parametersInStep)));
                 }
 
                 OpenMethod();
@@ -103,7 +110,7 @@ namespace specflowC.Parser
             Contents.Add("\t{");
         }
 
-        private void CloseMethod(NodeStep currentStep, List<NodeStep> steps)
+        private void CloseMethod(NodeStep currentStep, IList<NodeStep> steps)
         {
             Contents.Add("\t}");
             if (steps.Last() != currentStep)

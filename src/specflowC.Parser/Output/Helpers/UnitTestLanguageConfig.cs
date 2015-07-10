@@ -11,6 +11,8 @@
 
         public abstract bool UseInclude { get; set; }
 
+        public abstract bool UseHeader { get; }
+
         public abstract string[] includeStatementsInHeader { get; }
 
         public abstract string[] includeStatementsInScenarios { get; }
@@ -21,7 +23,7 @@
 
         public abstract string[] headerStatementsInScenarios { get; }
 
-        public abstract string[] usingStatementsInStepDefinition { get; }
+        public abstract string[] headerStatementsInStepDefinition { get; }
 
         public abstract string[] footerStatementsInStatementsHeader { get; }
 

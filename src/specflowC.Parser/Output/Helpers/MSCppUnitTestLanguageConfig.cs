@@ -20,6 +20,8 @@
 
         public override bool UseInclude { get { return _useInclude; } set { _useInclude = value; } }
 
+        public override bool UseHeader { get { return false; } }
+
         public override string[] includeStatementsInHeader
         {
             get
@@ -69,7 +71,7 @@
             get { return new string[] { }; }
         }
 
-        public override string[] usingStatementsInStepDefinition
+        public override string[] headerStatementsInStepDefinition
         {
             get { return new string[] { }; }
         }
