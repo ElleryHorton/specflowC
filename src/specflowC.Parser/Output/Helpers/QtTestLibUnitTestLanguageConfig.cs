@@ -1,10 +1,10 @@
 ﻿namespace specflowC.Parser.Output.Helpers
 {
-    public class MSCppUnitTestLanguageConfig : UnitTestLanguageConfig
+    public class QtTestLibUnitTestLanguageConfig : UnitTestLanguageConfig
     {
-        public MSCppUnitTestLanguageConfig()
+        public QtTestLibUnitTestLanguageConfig()
         {
-            NameSpace = "CppUnitTest";
+            NameSpace = string.Empty;
         }
 
         private string _featureName;
@@ -14,7 +14,7 @@
             _featureName = featureName;
         }
 
-        public override bool UseNamespace { get { return true; } }
+        public override bool UseNamespace { get { return false; } }
 
         private bool _useInclude = true;
 
@@ -25,10 +25,10 @@
             get
             {
                 return new[] {
-                    "#include \"CppUnitTest.h\"",
-                    "#include \"CppUnitTestHooks.h\"",
-                    "#include \"trim.hpp\"",
-                    "#include <vector>"
+                    "#include <QtTest>",
+                    "#include <QString>",
+                    "#include <QStringList>",
+                    "#include <QVector>"
                 };
             }
         }
@@ -55,13 +55,7 @@
 
         public override string[] headerStatementsInStatementsHeader
         {
-            get
-            {
-                return new[] {
-                    string.Format("using namespace Microsoft::VisualStudio::CppUnitTestFramework;"),
-                    string.Format("using namespace std;")
-                };
-            }
+            get { return new string[] { }; }
         }
 
         public override string[] headerStatementsInScenarios
@@ -71,12 +65,18 @@
 
         public override string[] usingStatementsInStepDefinition
         {
-            get { return new string[] { }; }
+            get { return new string[] {
+                string.Format("{0}::{0}()", _featureName),
+                "{",
+                "}"
+            }; }
         }
 
         public override string[] footerStatementsInStatementsHeader
         {
-            get { return new string[] { }; }
+            get { return new string[] {
+                string.Format("QTEST_APPLESS_MAIN({0})", _featureName)
+            }; }
         }
 
         public override string[] footerStatementsInScenarios
@@ -91,18 +91,18 @@
 
         public override string FeatureClassDeclaration
         {
-            get { return string.Format("TEST_CLASS({0})", _featureName); }
+            get { return string.Format("class {0} : public QObject", _featureName); }
         }
 
         public override string ScenarioMethodDeclaration(string attributeName, string scenarioName)
         {
             if (attributeName == string.Empty)
             {
-                return string.Format("TEST_METHOD({0})", scenarioName);
+                return string.Format("{0}()", scenarioName);
             }
             else
             {
-                return string.Format("TEST_METHOD_HOOK{0}({1})", attributeName.ToUpper(), scenarioName);
+                return string.Format("{0}()", scenarioName, attributeName.ToUpper());
             }
         }
 
@@ -123,7 +123,7 @@
 
         public override string FeatureClassInnerAttribute(string attributeName)
         {
-            return string.Format("TEST_CLASS_HOOK_{0}()", attributeName.ToUpper());
+            return string.Format("{0}();", _featureName);
         }
 
         public override string ScenarioMethodAttribute(string attributeName, string scenarioName)
@@ -136,20 +136,26 @@
             return string.Empty;
         }
 
-        public override string FeatureClassInitialization { get { return string.Empty; } }
+        public override string FeatureClassInitialization
+        {
+            get
+            {
+                return "Q_OBJECT";
+            }
+        }
 
         public override string PublicDeclaration { get { return "public:"; } }
 
-        public override string PrivateDeclaration { get { return "private:"; } }
+        public override string PrivateDeclaration { get { return "private Q_SLOTS:"; } }
 
-        public override string ErrorTableParse { get { return "Assert::Fail(L\"PARSE ERROR: Table is uneven\");"; } }
+        public override string ErrorTableParse { get { return "QFAIL(\"PARSE ERROR: Table is uneven\");"; } }
 
-        public override string PendingStepDeclaration { get { return "Assert::Fail(L\"Pending implementation...\");"; } }
+        public override string PendingStepDeclaration { get { return "QWARN(\"Pending implementation...\");"; } }
 
-        public override string TableDeclaration { get { return "std::vector<std::vector<std::string>> table, int rows, int cols"; } }
+        public override string TableDeclaration { get { return "QVector<QStringList> table, int rows, int cols"; } }
 
-        public override string TableImplementationOpen { get { return "std::vector<std::vector<std::string>> table = {{"; } }
+        public override string TableImplementationOpen { get { return "QVector<QStringList> table = {"; } }
 
-        public override string TableImplementationClose { get { return "}};"; } }
+        public override string TableImplementationClose { get { return "};"; } }
     }
 }

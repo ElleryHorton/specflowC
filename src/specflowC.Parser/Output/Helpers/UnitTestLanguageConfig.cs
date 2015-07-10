@@ -17,9 +17,9 @@
 
         public abstract string[] includeStatementsInStepDefinition { get; }
 
-        public abstract string[] usingStatementsInStatementsHeader { get; }
+        public abstract string[] headerStatementsInStatementsHeader { get; }
 
-        public abstract string[] usingStatementsInScenarios { get; }
+        public abstract string[] headerStatementsInScenarios { get; }
 
         public abstract string[] usingStatementsInStepDefinition { get; }
 
@@ -58,5 +58,13 @@
         public abstract string ErrorTableParse { get; }
 
         public abstract string PendingStepDeclaration { get; }
+
+        // tables
+        public abstract string TableDeclaration { get; }
+
+        public abstract string TableImplementationOpen { get; }
+
+        public abstract string TableImplementationClose { get; }
+
     }
 }

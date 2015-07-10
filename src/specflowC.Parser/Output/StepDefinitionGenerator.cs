@@ -76,7 +76,7 @@ namespace specflowC.Parser
                 }
                 else if ((step.Parameters.Count == 0) && (step.Rows.Count > 0))
                 {
-                    Contents.Add(string.Format("\tvoid {0}::{1}(std::vector<std::vector<std::string>> table, int rows, int cols)", feature.Name, step.Name));
+                    Contents.Add(string.Format("\tvoid {0}::{1}({2})", feature.Name, step.Name, LanguageConfig.TableDeclaration));
                 }
                 else
                 {
@@ -84,7 +84,7 @@ namespace specflowC.Parser
                     {
                         parametersInStep.Add(Parameter.Type + " " + Parameter.Name);
                     }
-                    Contents.Add(string.Format("\tvoid {0}::{1}(std::vector<std::vector<std::string>> table, int rows, int cols, {2})", feature.Name, step.Name, string.Join(", ", parametersInStep)));
+                    Contents.Add(string.Format("\tvoid {0}::{1}({2}, {3})", feature.Name, step.Name, LanguageConfig.TableDeclaration, string.Join(", ", parametersInStep)));
                 }
 
                 OpenMethod();

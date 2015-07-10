@@ -87,7 +87,7 @@ namespace specflowC.Parser
 
         private void BuildUsingStatements()
         {
-            foreach (var statement in LanguageConfig.usingStatementsInStatementsHeader)
+            foreach (var statement in LanguageConfig.headerStatementsInStatementsHeader)
             {
                 Contents.Add(statement);
             }
@@ -136,7 +136,7 @@ namespace specflowC.Parser
                 }
                 else if ((step.Parameters.Count == 0) && (step.Rows.Count > 0))
                 {
-                    privateContents.Add(string.Format("\t\tvoid {0}(std::vector<std::vector<std::string>> table, int rows, int cols);", step.Name));
+                    privateContents.Add(string.Format("\t\tvoid {0}({1});", step.Name, LanguageConfig.TableDeclaration));
                 }
                 else
                 {
@@ -144,7 +144,7 @@ namespace specflowC.Parser
                     {
                         parametersInStep.Add(Parameter.Type + " " + Parameter.Name);
                     }
-                    privateContents.Add(string.Format("\t\tvoid {0}(std::vector<std::vector<std::string>> table, int rows, int cols, {1}", step.Name, string.Join(", ", parametersInStep) + ");"));
+                    privateContents.Add(string.Format("\t\tvoid {0}({1}, {2}", step.Name, LanguageConfig.TableDeclaration, string.Join(", ", parametersInStep) + ");"));
                 }
             }
         }

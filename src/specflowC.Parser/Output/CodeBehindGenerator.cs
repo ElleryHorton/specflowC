@@ -139,7 +139,7 @@ namespace specflowC.Parser
                 contents.Add(string.Format("\t\t{0}", LanguageConfig.ErrorTableParse));
             }
 
-            contents.Add("\t\tstd::vector<std::vector<std::string>> table = {{");
+            contents.Add(string.Format("\t\t{0}", LanguageConfig.TableImplementationOpen));
 
             // TODO: replace parameters in SpecFlow table? Not yet a SpecFlow feature
             // http://stackoverflow.com/questions/20370854/specflow-use-parameters-in-a-table-with-a-scenario-context
@@ -155,7 +155,7 @@ namespace specflowC.Parser
             {
                 contents.Add(string.Format("\t\t\t{{ \"{0}\" }}", string.Join("\", \"", rows[rowIndex]))); // no comma
             }
-            contents.Add("\t\t}};");
+            contents.Add(string.Format("\t\t{0}", LanguageConfig.TableImplementationClose));
         }
 
         private void OpenScenarioMethod(string featureName, string scenarioName)
