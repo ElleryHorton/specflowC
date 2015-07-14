@@ -37,11 +37,18 @@ namespace specflowC.Parser.UnitTests
         {
             var features = FeatureWithScenarioAndNoStep();
 
-            NodeStep step = new NodeStep();
-            step.Name = "GivenIHaveAStep";
+            NodeStep step = new NodeStep("GivenIHaveAStep");
 
             features[0].Scenarios[0].Steps.Add(step);   // steps to scenario
 
+            return features;
+        }
+
+        public static IList<NodeFeature> FeatureWithScenarioAndTwoSteps()
+        {
+            var features = FeatureWithScenarioAndNoStep();
+            features[0].Scenarios[0].Steps.Add(new NodeStep("GivenIHaveAStep"));
+            features[0].Scenarios[0].Steps.Add(new NodeStep("WhenIHaveAStep"));
             return features;
         }
 
@@ -72,29 +79,10 @@ namespace specflowC.Parser.UnitTests
                 new[] { "1", "2", "3" },
                 new[] { "4", "5", "6" }
             };
-            NodeStep step = new NodeStep();
-            step.Name = "GivenIHaveAStep";
 
-            scenario.Steps.Add(step);                       // steps to scenario
-            featureWithScenario.Scenarios.Add(scenario);    // scenario to feature
-            features.Add(featureWithScenario);              // feature to feature list
-
-            return features;
-        }
-
-        public static IList<NodeFeature> FeatureWithScenarioOutlineAndStepAndParameter(string type)
-        {
-            var features = FeatureWithScenarioOutlineAndStep();
-
-            features[0].Scenarios[0].Steps[0].Parameters.Add(
-                new Parameter()
-                {
-                    IsFromExampleTable = false,
-                    Name = "p0",
-                    Type = type,
-                    Value = "123"
-                }
-            );
+            scenario.Steps.Add(new NodeStep("GivenIHaveAStep"));
+            featureWithScenario.Scenarios.Add(scenario);
+            features.Add(featureWithScenario);
 
             return features;
         }

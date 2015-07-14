@@ -150,7 +150,7 @@
 
         public override string TableDeclaration { get { return "std::vector<std::vector<std::string>> table, int rows, int cols"; } }
 
-        public override string TableImplementationOpen { get { return "std::vector<std::vector<std::string>> table = {{"; } }
+        public override string TableImplementationOpen(int tableNumber) { return string.Format("std::vector<std::vector<std::string>> table{0} = {{{{", tableNumber); }
 
         public override string TableImplementationClose { get { return "}};"; } }
     }

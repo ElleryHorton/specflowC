@@ -156,7 +156,7 @@
 
         public override string TableDeclaration { get { return "QVector<QStringList> table, int rows, int cols"; } }
 
-        public override string TableImplementationOpen { get { return "QVector<QStringList> table = {"; } }
+        public override string TableImplementationOpen(int tableNumber) { return string.Format("QVector<QStringList> table{0} = {{", tableNumber); }
 
         public override string TableImplementationClose { get { return "};"; } }
     }

@@ -64,7 +64,7 @@
         // tables
         public abstract string TableDeclaration { get; }
 
-        public abstract string TableImplementationOpen { get; }
+        public abstract string TableImplementationOpen(int tableNumber);
 
         public abstract string TableImplementationClose { get; }
 

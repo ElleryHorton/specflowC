@@ -78,16 +78,9 @@ namespace specflowC.Parser.UnitTests
 		{
 			var features = TestCodeBehindData.FeatureWithScenarioAndNoStep();
 
-			// steps to scenario
-			TokenGherkinStep tokens = new TokenGherkinStep();
-			tokens.MethodName = "GivenIHaveAStep";
-			features[0].Scenarios[0].Steps.Add(new NodeStep(tokens));
-			tokens = new TokenGherkinStep();
-			tokens.MethodName = "WhenIHaveAStep";
-			features[0].Scenarios[0].Steps.Add(new NodeStep(tokens));
-			tokens = new TokenGherkinStep();
-			tokens.MethodName = "ThenIHaveAStep";
-			features[0].Scenarios[0].Steps.Add(new NodeStep(tokens));
+			features[0].Scenarios[0].Steps.Add(new NodeStep("GivenIHaveAStep"));
+			features[0].Scenarios[0].Steps.Add(new NodeStep("WhenIHaveAStep"));
+			features[0].Scenarios[0].Steps.Add(new NodeStep("ThenIHaveAStep"));
 
 			var files = GeneratorFactory.Generate(GeneratorType.CodeBehindGenerator, features);
 

@@ -7,6 +7,8 @@ namespace specflowC.Parser
 {
     public class CodeBehindGenerator : Generator, IGenerate
     {
+        private int _tableNumberInScenario;
+
         protected override string[] BuildContents(NodeFeature feature)
         {
             BuildIncludeStatements(feature.Name);
@@ -33,6 +35,7 @@ namespace specflowC.Parser
         {
             var examples = GetExamples(scenario);
             int repeat = 1;
+            _tableNumberInScenario = -1;
             int countOfRowsExcludingHeaderRow = examples.Rows.Count - 1;
             do
             {
@@ -71,31 +74,37 @@ namespace specflowC.Parser
 
         private void BuildStepMethodCall(NodeStep step, NodeExamples examples, int exampleIndex)
         {
-            if (step.Rows.Count > 0)
+            // if we have rows and first time thru scenario outline
+            if (step.Rows.Count > 0 && exampleIndex == 1) // TODO: remove exampleIndex == 1 if parameterizing table arguments
             {
-                BuildTestDataTable(step.Rows, Contents); // TODO: could pass in NodeExamples examples
+                _tableNumberInScenario++;
+
+                // TODO: could pass in NodeExamples examples to support parameterizing table arguments
+                BuildTestDataTable(step.Rows, Contents);
             }
 
             Contents.Add(string.Format("\t\t{0};", LanguageConfig.StepMethod(step.Name, BuildParameterString(step.Parameters, step.Rows, examples, exampleIndex))));
         }
 
-        private static string BuildParameterString(List<Parameter> parameters, List<string[]> rows, NodeExamples examples, int exampleIndex)
+        private string BuildParameterString(List<Parameter> parameters, List<string[]> rows, NodeExamples examples, int exampleIndex)
         {
+            string retstr;
             if (rows.Count > 0)
             {
                 if (parameters.Count > 0)
                 {
-                    return string.Format("{0},table,{1},{2}", BuildParameterStringFromStepParameters(parameters, examples, exampleIndex), rows.Count, rows[0].Length);
+                    retstr = string.Format("{0},table{1},{2},{3}", BuildParameterStringFromStepParameters(parameters, examples, exampleIndex), _tableNumberInScenario, rows.Count, rows[0].Length);
                 }
                 else
                 {
-                    return string.Format("table,{0},{1}", rows.Count, rows[0].Length);
+                    retstr = string.Format("table{0},{1},{2}", _tableNumberInScenario, rows.Count, rows[0].Length);
                 }
             }
             else
             {
-                return BuildParameterStringFromStepParameters(parameters, examples, exampleIndex);
+                retstr = BuildParameterStringFromStepParameters(parameters, examples, exampleIndex);
             }
+            return retstr;
         }
 
         private static string BuildParameterStringFromStepParameters(List<Parameter> parameters, NodeExamples examples, int exampleIndex)
@@ -139,7 +148,7 @@ namespace specflowC.Parser
                 contents.Add(string.Format("\t\t{0}", LanguageConfig.ErrorTableParse));
             }
 
-            contents.Add(string.Format("\t\t{0}", LanguageConfig.TableImplementationOpen));
+            contents.Add(string.Format("\t\t{0}", LanguageConfig.TableImplementationOpen(_tableNumberInScenario)));
 
             // TODO: replace parameters in SpecFlow table? Not yet a SpecFlow feature
             // http://stackoverflow.com/questions/20370854/specflow-use-parameters-in-a-table-with-a-scenario-context

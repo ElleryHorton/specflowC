@@ -12,33 +12,14 @@ namespace specflowC.Parser.UnitTests
         {
             IList<NodeFeature> features = new List<NodeFeature>();
 
-            //Create duplicate steps & add
-            NodeStep step1 = new NodeStep();
-            step1.Name = "GivenAMethod1";
-
-            NodeStep step2 = new NodeStep();
-            step2.Name = "WhenUsingAMethod1";
-
-            NodeStep step3 = new NodeStep();
-            step3.Name = "ThenUsingAMethod1";
-
-            NodeStep step4 = new NodeStep();
-            step4.Name = "GivenAMethod1";
-
-            NodeStep step5 = new NodeStep();
-            step5.Name = "WhenUsingAMethod1";
-
-            NodeStep step6 = new NodeStep();
-            step6.Name = "ThenUsingAMethod1";
-
             //Create scenario & add
             NodeScenario scenario1 = new NodeScenario("MyScenario1");
-            scenario1.Steps.Add(step1);
-            scenario1.Steps.Add(step2);
-            scenario1.Steps.Add(step3);
-            scenario1.Steps.Add(step4);
-            scenario1.Steps.Add(step5);
-            scenario1.Steps.Add(step6);
+            scenario1.Steps.Add(new NodeStep("GivenAMethod1"));
+            scenario1.Steps.Add(new NodeStep("WhenUsingAMethod1"));
+            scenario1.Steps.Add(new NodeStep("ThenUsingAMethod1"));
+            scenario1.Steps.Add(new NodeStep("GivenAMethod1"));
+            scenario1.Steps.Add(new NodeStep("WhenUsingAMethod1"));
+            scenario1.Steps.Add(new NodeStep("ThenUsingAMethod1"));
 
             //Create feature & add
             NodeFeature feature1 = new NodeFeature("MyFeature1");
@@ -90,8 +71,7 @@ namespace specflowC.Parser.UnitTests
             rows.Add(row2);
 
             //Create step & add
-            NodeStep step1 = new NodeStep();
-            step1.Name = "GivenStep1WithTable";
+            NodeStep step1 = new NodeStep("GivenStep1WithTable");
             step1.Rows = rows;
 
             //Create scenario & add
@@ -145,8 +125,7 @@ namespace specflowC.Parser.UnitTests
             p1.Value = "ValueOfMyParameter1";
 
             //Create step & add
-            NodeStep step1 = new NodeStep();
-            step1.Name = "GivenStep1WithTable";
+            NodeStep step1 = new NodeStep("GivenStep1WithTable");
             step1.Parameters.Add(p1);
             step1.Rows = new List<string[]> {
 				new [] { "a", "b", "c" },

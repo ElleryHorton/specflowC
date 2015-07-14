@@ -278,14 +278,8 @@ namespace specflowC.Parser.UnitTests
             IList<NodeFeature> features;
             features = new List<NodeFeature>();
 
-            //Creates Gherkin Step 1
-            TokenGherkinStep tokenStep1 = new TokenGherkinStep();
-            tokenStep1.MethodName = "GivenMethod1";
-            List<string> tokenParameters1 = new List<string>();
-            tokenStep1.ParameterTokens = tokenParameters1;
-
             //Creates Step 1
-            NodeStep step1 = new NodeStep(tokenStep1);
+            NodeStep step1 = new NodeStep("GivenMethod1");
 
             //Creates Scenario 1
             NodeScenario scenario1 = new NodeScenario("TestScenario1", new List<NodeHook>() { new NodeHook("featurehook1"), new NodeHook("scenariohook1") });
@@ -343,14 +337,8 @@ namespace specflowC.Parser.UnitTests
 				new NodeHook("scenariohook2")
 			};
 
-            //Creates Gherkin Step 1
-            TokenGherkinStep tokenStep1 = new TokenGherkinStep();
-            tokenStep1.MethodName = "GivenMethod1";
-            List<string> tokenParameters1 = new List<string>();
-            tokenStep1.ParameterTokens = tokenParameters1;
-
             //Creates Step 1
-            NodeStep step1 = new NodeStep(tokenStep1);
+            NodeStep step1 = new NodeStep("GivenMethod1");
 
             //Creates Scenario 1
             NodeScenario scenario1 = new NodeScenario("TestScenario1", scenarioHooks);
@@ -409,23 +397,11 @@ namespace specflowC.Parser.UnitTests
 				new NodeHook("scenariohook2")
 			};
 
-            //Creates Gherkin Step 1
-            TokenGherkinStep tokenStep1 = new TokenGherkinStep();
-            tokenStep1.MethodName = "GivenMethod1";
-            List<string> tokenParameters1 = new List<string>();
-            tokenStep1.ParameterTokens = tokenParameters1;
-
-            //Creates Gherkin Step 2
-            TokenGherkinStep tokenStep2 = new TokenGherkinStep();
-            tokenStep2.MethodName = "GivenMethod2";
-            List<string> tokenParameters2 = new List<string>();
-            tokenStep2.ParameterTokens = tokenParameters2;
-
             //Creates Step 1
-            NodeStep step1 = new NodeStep(tokenStep1);
+            NodeStep step1 = new NodeStep("GivenMethod1");
 
             //Creates Step 2
-            NodeStep step2 = new NodeStep(tokenStep2);
+            NodeStep step2 = new NodeStep("GivenMethod2");
 
             //Creates Scenario 1
             NodeScenario scenario1 = new NodeScenario("TestScenario1", scenarioHooks);

@@ -19,6 +19,12 @@ namespace specflowC.Parser.Nodes
             Rows = new List<string[]>();
         }
 
+        public NodeStep(string stepName)
+        {
+            Name = stepName;
+            Rows = new List<string[]>();
+        }
+
         public NodeStep(TokenGherkinStep tokens)
         {
             Name = tokens.MethodName;

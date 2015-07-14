@@ -12,17 +12,15 @@ namespace specflowC.Parser.UnitTests.TestStepGenerator
         {
             IList<NodeFeature> features;
             features = new List<NodeFeature>();
-            NodeStep step = new NodeStep();
-            step.Name = "GivenMethod";
 
             NodeFeature feature = new NodeFeature("Feature1");
             NodeScenario scenario = new NodeScenario("Scenario1");
-            scenario.Steps.Add(step);
+            scenario.Steps.Add(new NodeStep("GivenMethod"));
             feature.Scenarios.Add(scenario);
             features.Add(feature);
             feature = new NodeFeature("Feature2");
             scenario = new NodeScenario("Scenario2");
-            scenario.Steps.Add(step);
+            scenario.Steps.Add(new NodeStep("GivenMethod"));
             feature.Scenarios.Add(scenario);
             features.Add(feature);
 
@@ -53,8 +51,7 @@ namespace specflowC.Parser.UnitTests.TestStepGenerator
             features = new List<NodeFeature>();
 
             //Add step
-            NodeStep step1 = new NodeStep();
-            step1.Name = "GivenMethod1";
+            NodeStep step1 = new NodeStep("GivenMethod1");
 
             //Add scenario
             NodeScenario scenario1 = new NodeScenario("Scenario1");
@@ -87,18 +84,10 @@ namespace specflowC.Parser.UnitTests.TestStepGenerator
             IList<NodeFeature> features;
             features = new List<NodeFeature>();
 
-            //Add step 1
-            NodeStep step1 = new NodeStep();
-            step1.Name = "GivenMethod1";
-
-            //Add step 2
-            NodeStep step2 = new NodeStep();
-            step2.Name = "GivenMethod1";
-
             //Add scenario 1
             NodeScenario scenario1 = new NodeScenario("Scenario1");
-            scenario1.Steps.Add(step1);
-            scenario1.Steps.Add(step2);
+            scenario1.Steps.Add(new NodeStep("GivenMethod1"));
+            scenario1.Steps.Add(new NodeStep("GivenMethod1"));
 
             //Add feature
             NodeFeature feature1 = new NodeFeature("Feature1");
@@ -127,18 +116,10 @@ namespace specflowC.Parser.UnitTests.TestStepGenerator
             IList<NodeFeature> features;
             features = new List<NodeFeature>();
 
-            //Add step 1
-            NodeStep step1 = new NodeStep();
-            step1.Name = "GivenMethod1";
-
-            //Add step 2
-            NodeStep step2 = new NodeStep();
-            step2.Name = "GivenMethod2";
-
             //Add scenario 1
             NodeScenario scenario1 = new NodeScenario("Scenario1");
-            scenario1.Steps.Add(step1);
-            scenario1.Steps.Add(step2);
+            scenario1.Steps.Add(new NodeStep("GivenMethod1"));
+            scenario1.Steps.Add(new NodeStep("GivenMethod2"));
 
             //Add feature
             NodeFeature feature1 = new NodeFeature("Feature1");
@@ -179,8 +160,7 @@ namespace specflowC.Parser.UnitTests.TestStepGenerator
             p1.Value = "ValueOfParameter1";
 
             //Add step
-            NodeStep step1 = new NodeStep();
-            step1.Name = "GivenMethod1";
+            NodeStep step1 = new NodeStep("GivenMethod1");
             step1.Parameters.Add(p1);
 
             //Add scenario
@@ -221,8 +201,7 @@ namespace specflowC.Parser.UnitTests.TestStepGenerator
             p1.Value = "2.1";
 
             //Add step
-            NodeStep step1 = new NodeStep();
-            step1.Name = "GivenMethod1";
+            NodeStep step1 = new NodeStep("GivenMethod1");
             step1.Parameters.Add(p1);
 
             //Add scenario
@@ -269,8 +248,7 @@ namespace specflowC.Parser.UnitTests.TestStepGenerator
             p2.Value = "2";
 
             //Add step
-            NodeStep step1 = new NodeStep();
-            step1.Name = "GivenMethod1";
+            NodeStep step1 = new NodeStep("GivenMethod1");
             step1.Parameters.Add(p1);
             step1.Parameters.Add(p2);
 
@@ -306,8 +284,7 @@ namespace specflowC.Parser.UnitTests.TestStepGenerator
             features = new List<NodeFeature>();
 
             //Add step
-            NodeStep step1 = new NodeStep();
-            step1.Name = "GivenMethod1";
+            NodeStep step1 = new NodeStep("GivenMethod1");
             step1.Rows = new List<string[]>() {
                  new [] { "a", "b", "c" }
             };
@@ -350,8 +327,7 @@ namespace specflowC.Parser.UnitTests.TestStepGenerator
             p1.Value = "ValueOfParameter1";
 
             //Add step
-            NodeStep step1 = new NodeStep();
-            step1.Name = "GivenMethod1";
+            NodeStep step1 = new NodeStep("GivenMethod1");
             step1.Parameters.Add(p1);
             step1.Rows = new List<string[]>() {
                 new [] { "a", "b", "c" }
@@ -401,8 +377,7 @@ namespace specflowC.Parser.UnitTests.TestStepGenerator
             p2.Value = "2";
 
             //Add step
-            NodeStep step1 = new NodeStep();
-            step1.Name = "GivenMethod1";
+            NodeStep step1 = new NodeStep("GivenMethod1");
             step1.Parameters.Add(p1);
             step1.Parameters.Add(p2);
             step1.Rows = new List<string[]> {
