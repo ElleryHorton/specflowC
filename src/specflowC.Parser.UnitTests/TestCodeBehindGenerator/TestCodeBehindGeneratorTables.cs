@@ -191,11 +191,12 @@ namespace specflowC.Parser.UnitTests
 				"\t\t\t{ \"a\", \"b\", \"c\" },",
 				"\t\t\t{ \"1\", \"2\", \"3\" }",
 				"\t\t}};",
-				string.Format("\t\t{0}(\"{1}\",table0,{2},{3});",
+				string.Format("\t\t{0}(table0,{1},{2},\"{3}\");",
 					features[0].Scenarios[0].Steps[0].Name,
-					features[0].Scenarios[0].Steps[0].Parameters[0].Value,
 					features[0].Scenarios[0].Steps[0].Rows.Count,
-					features[0].Scenarios[0].Steps[0].Rows[0].Length),
+					features[0].Scenarios[0].Steps[0].Rows[0].Length,
+                    features[0].Scenarios[0].Steps[0].Parameters[0].Value
+                    ),
 				string.Format("\t\t{0}();", features[0].Scenarios[0].Steps[1].Name),
 				"\t}",
 				"}"

@@ -93,7 +93,7 @@ namespace specflowC.Parser
             {
                 if (parameters.Count > 0)
                 {
-                    retstr = string.Format("{0},table{1},{2},{3}", BuildParameterStringFromStepParameters(parameters, examples, exampleIndex), _tableNumberInScenario, rows.Count, rows[0].Length);
+                    retstr = string.Format("table{0},{1},{2},{3}", _tableNumberInScenario, rows.Count, rows[0].Length, BuildParameterStringFromStepParameters(parameters, examples, exampleIndex));
                 }
                 else
                 {
