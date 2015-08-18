@@ -98,9 +98,14 @@ namespace specflowC.Parser
             }
         }
 
+        static private UnitTestLanguageConfig GetLanguageConfig()
+        {
+            return new QtTestLibUnitTestCpp11LanguageConfig();
+        }
+
         static private void WriteFile(IGenerate generator, List<NodeFeature> features, string outputDirectory, string extension, string consoleMessage)
         {
-            List<string[]> listOfContents = generator.Generate(new MSCppUnitTestLanguageConfig(), features);
+            List<string[]> listOfContents = generator.Generate(GetLanguageConfig(), features);
             for (int i = 0; i < listOfContents.Count; i++)
             {
                 string file = string.Format("{0}{1}{2}", outputDirectory, features[i].Name, extension);
@@ -120,7 +125,7 @@ namespace specflowC.Parser
                 string file = outputDirectory + features[i].Name + "_stepDefinitions.cpp";
                 Console.WriteLine(string.Format("STEP DEFINITIONS CPP: {0}", file));
 
-                MSCppUnitTestLanguageConfig langConfig = new MSCppUnitTestLanguageConfig();
+                UnitTestLanguageConfig langConfig = GetLanguageConfig();
                 if (File.Exists(file))
                 {
                     Console.WriteLine("File exists and may contain user-generated code");

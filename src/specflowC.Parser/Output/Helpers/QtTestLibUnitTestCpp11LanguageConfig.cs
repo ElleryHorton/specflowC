@@ -1,8 +1,8 @@
 ﻿namespace specflowC.Parser.Output.Helpers
 {
-    public class QtTestLibUnitTestLanguageConfig : UnitTestLanguageConfig
+    public class QtTestLibUnitTestCpp11LanguageConfig : UnitTestLanguageConfig
     {
-        public QtTestLibUnitTestLanguageConfig()
+        public QtTestLibUnitTestCpp11LanguageConfig()
         {
             NameSpace = string.Empty;
         }

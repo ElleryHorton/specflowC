@@ -61,7 +61,7 @@
     <Compile Include="Input\GherkinParser.cs" />
     <Compile Include="Nodes\Parameter.cs" />
     <Compile Include="Nodes\TokenGherkinStep.cs" />
-    <Compile Include="Output\Helpers\QtTestLibUnitTestLanguageConfig.cs" />
+    <Compile Include="Output\Helpers\QtTestLibUnitTestCpp11LanguageConfig.cs" />
     <Compile Include="Output\Helpers\GeneratorHelper.cs" />
     <Compile Include="Output\HeaderGenerator.cs" />
     <Compile Include="Output\Helpers\MSCppUnitTestLanguageConfig.cs" />
